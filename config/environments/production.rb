@@ -81,4 +81,15 @@ Happiness::Application.configure do
   #required for heroku
   # not to set this to your host
   config.action_mailer.default_url_options = { :host => 'happinessfactory.herokuapp.com' }
+
+#config paperclip to upload images to amazon s3
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['AWS_BUCKET'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+}
+
 end

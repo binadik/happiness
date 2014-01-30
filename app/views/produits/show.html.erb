@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @produit.nom %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @produit.description %>
+</p>
+
+<% if @produit.user == current_user %>
+<%= link_to 'Edit', edit_produit_path(@produit) %> |
+<%= link_to 'Back', produits_path %>

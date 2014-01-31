@@ -1,38 +1,20 @@
-<h1>Listing produits</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Nom</th>
-      <th>User</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div id="produits" class="transitions-enabled">
     <% @produits.each do |produit| %>
-      <tr>
-        <td><%= image_tag produit.image.url (:thumb)%> </td>
-        <td><%= produit.nom %></td>
-        <td><%= produit.user_id if produit.user %></td>
-        <td><%= produit.description %></td>
-        <td><%= link_to 'Show', produit %></td>
-        <% if produit.user == current_user %>
-        <td><%= link_to 'Edit', edit_produit_path(produit) %></td>
-        <td><%= link_to 'Destroy', produit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      
-      </tr>
+      <div class="box panel panel-default">    
+        <%= image_tag produit.image.url (:thumb)%>
+        <div class="panel-body"> 
+          <%= produit.nom %>
+          <%= produit.user_id if produit.user %>
+          <%= produit.description %>
+          <%= link_to 'Show', produit %>
+          <% if produit.user == current_user %>
+            <%= link_to 'Edit', edit_produit_path(produit) %>
+            <%= link_to 'Destroy', produit, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 
-<br>
 
-<% if user_signed_in? %>
-  <%= link_to 'New Produit', new_produit_path %>
-<% end %>
+
